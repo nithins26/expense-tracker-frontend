@@ -24,11 +24,11 @@ function LoginPage() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const onSubmit = (e: FormEvent) => {
+  const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setLoading(true);
     try {
-      authService.login(username.trim(), password);
+      await authService.login(username.trim(), password);
       toast.success("Welcome back!");
       navigate({ to: "/dashboard" });
     } catch (err) {

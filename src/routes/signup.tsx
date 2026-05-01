@@ -24,7 +24,7 @@ function SignupPage() {
   const [confirm, setConfirm] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const onSubmit = (e: FormEvent) => {
+  const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (password !== confirm) {
       toast.error("Passwords do not match");
@@ -36,9 +36,9 @@ function SignupPage() {
     }
     setLoading(true);
     try {
-      authService.signup(username.trim(), password);
+      await authService.signup(username.trim(), password);
       toast.success("Account created!");
-      navigate({ to: "/dashboard" });
+      navigate({ to: "/login" });
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Signup failed");
     } finally {
