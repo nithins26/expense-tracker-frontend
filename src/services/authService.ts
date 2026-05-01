@@ -1,6 +1,6 @@
 import { useSyncExternalStore } from "react";
 
-const API = import.meta.env.VITE_API_URL;
+const API = (import.meta.env.VITE_API_URL || "").replace(/\/+$/, "");
 
 // ---------- SSR SAFETY ----------
 const isBrowser = typeof window !== "undefined";
